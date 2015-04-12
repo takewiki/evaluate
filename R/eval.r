@@ -55,8 +55,7 @@ evaluate <- function(input, envir = parent.frame(), enclos = NULL, debug = FALSE
   out <- vector("list", nrow(parsed))
   for (i in seq_along(out)) {
     expr <- parsed$expr[[i]]
-    if (!is.null(expr))
-      expr <- as.expression(expr)
+    if (length(expr) == 0L) expr <- NULL
     out[[i]] <- evaluate_call(
       expr, parsed$src[[i]],
       envir = envir, enclos = enclos, debug = debug, last = i == length(out),
