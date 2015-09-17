@@ -22,7 +22,7 @@ if (identical(Sys.getlocale("LC_CTYPE"), "en_US.UTF-8")) {
 
   test_that("multibyte characters are parsed correct", {
     code <- c("ϱ <- 1# g / ml", "äöüßÄÖÜπ <- 7 + 3# nonsense")
-    expect_identical(parse_all(code)$src, append_break(code))
+    expect_identical(parse_all(code)$src, paste0(code, c("\n", "")))
   })
 
 }
