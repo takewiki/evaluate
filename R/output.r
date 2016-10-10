@@ -1,26 +1,33 @@
+class_source <- c("source", "evaluate_source")
+class_output <- c("evaluate_output")
+class_value <- c("value", "evaluate_value")
+class_message <- c("message", "evaluate_message")
+class_warning <- c("warning", "evaluate_warning")
+class_error <- c("error", "evaluate_error")
+
 #' Object class tests
 #' @export is.message is.warning is.error is.value is.source is.recordedplot
 #' @aliases is.message is.warning is.error is.value is.source is.recordedplot
 #' @keywords internal
 #' @rdname is.message
-is.message <- function(x) inherits(x, "message")
+is.message <- function(x) inherits(x, class_message)
 #' @rdname is.message
-is.warning <- function(x) inherits(x, "warning")
+is.warning <- function(x) inherits(x, class_warning)
 #' @rdname is.message
-is.error <- function(x) inherits(x, "error")
+is.error <- function(x) inherits(x, class_error)
 #' @rdname is.message
-is.value <- function(x) inherits(x, "value")
+is.value <- function(x) inherits(x, class_value)
 #' @rdname is.message
-is.source <- function(x) inherits(x, "source")
+is.source <- function(x) inherits(x, class_source)
 #' @rdname is.message
 is.recordedplot <- function(x) inherits(x, "recordedplot")
 
 new_value <- function(value, visible = TRUE) {
-  structure(list(value = value, visible = visible), class = "value")
+  structure(list(value = value, visible = visible), class = class_value)
 }
 
 new_source <- function(src) {
-  structure(list(src = src), class = "source")
+  structure(list(src = src), class = class_source)
 }
 
 classes <- function(x) vapply(x, function(x) class(x)[1], character(1))
